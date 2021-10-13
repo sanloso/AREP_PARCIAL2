@@ -11,14 +11,26 @@ public class Calculator
     {
         port(getPort());
         get("/sin", (req, res) -> sinFuction(req, res));
+        get("/arsin", (req, res) -> asinFuction(req, res));
     }
 
+
     private static Object sinFuction(Request req, Response res) {
-        System.out.println(req.queryParams());
         Double dato = Double.parseDouble(req.queryParams("value"));
-        Double resultado = Math.sin(dato);
+        double resultado = Math.sin(dato);
         JSONObject jsObject = new JSONObject();
         jsObject.put("Operation:", "Sin ");
+        jsObject.put("Input: ",dato);
+        jsObject.put("Output: ",resultado);
+
+        return jsObject;
+    }
+
+    private static Object asinFuction(Request req, Response res) {
+        Double dato = Double.parseDouble(req.queryParams("value"));
+        double resultado = Math.asin(dato);
+        JSONObject jsObject = new JSONObject();
+        jsObject.put("Operation:", "Asin ");
         jsObject.put("Input: ",dato);
         jsObject.put("Output: ",resultado);
 
